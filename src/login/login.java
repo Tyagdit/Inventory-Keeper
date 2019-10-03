@@ -108,8 +108,7 @@ public class login extends JFrame {
 		username.setForeground(Color.GRAY);
 		username.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
 		username.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		username.setText("Enter User Name");
-		username.setBounds(98, 82, 195, 27);
+		username.setBounds(162, 82, 154, 27);
 		panel_1.add(username);
 		username.setColumns(10);
 		
@@ -118,12 +117,11 @@ public class login extends JFrame {
 		*/
 		
 		password = new JTextField();
-		password.setText("Enter Password");
 		password.setForeground(Color.GRAY);
 		password.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
 		password.setColumns(10);
 		password.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		password.setBounds(98, 153, 195, 27);
+		password.setBounds(162, 149, 154, 27);
 		panel_1.add(password);
 		
 		JButton btnNewButton = new JButton("Login\r\n");
@@ -138,7 +136,7 @@ public class login extends JFrame {
 					
 					//Second Frame Called
 					
-					j2 second=new j2(user);
+					j2 second=new j2();
 					dispose();
 					second.setVisible(true);
 				}
@@ -156,6 +154,16 @@ public class login extends JFrame {
 		btnNewButton.setBackground(SystemColor.textHighlight);
 		btnNewButton.setBounds(147, 221, 89, 23);
 		panel_1.add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("User Name :");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(66, 87, 89, 27);
+		panel_1.add(lblNewLabel_1);
+		
+		JLabel lblPassword = new JLabel("Password :");
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPassword.setBounds(63, 149, 89, 27);
+		panel_1.add(lblPassword);
 	}
 
 	private void initComponents() {

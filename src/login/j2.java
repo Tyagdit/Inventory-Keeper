@@ -41,10 +41,10 @@ public class j2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					j2 frame = new j2(a);
+					j2 frame = new j2();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
-					center(frame);
+					//center(frame);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -72,54 +72,9 @@ public class j2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public j2(String accept) {
+	public j2() {
 		
-		
-		/*Connection con=null;
-        Statement stmt=null;
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("\nDriver loaded");
-
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","root");
-            System.out.print("Connection Successful");
-
-		
-            System.out.println("\nInserting record....");
-            stmt=con.createStatement();
-            
-            System.out.print(accept);
-
-            String sql = "INSERT INTO Registration " +
-                    "VALUES (1000, 'Dinesh')";
-            stmt.executeUpdate(sql);
-
-
-        }
-        catch(ClassNotFoundException e)
-        {
-            System.out.print("Exception "+e.getMessage());
-        }
-        
-        
-        catch(SQLException se){
-            //Handle errors for JDBC
-            se.printStackTrace();
-        }
-
-		
-		
-		*/
-            
-            
-            
-            
-            
-		
-		
-		
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 679, 440);
@@ -139,20 +94,22 @@ public class j2 extends JFrame {
 		lblNewLabel_1.setBounds(34, 25, 121, 128);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel(accept);
+		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(77, 164, 46, 14);
 		panel.add(lblNewLabel_2);
 		
 		
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(null);
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(194, 0, 469, 401);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
 		
-		JButton btnNewButton = new JButton("Sale Order");
+		JButton btnNewButton = new JButton("Import Car");
+		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -219,33 +176,44 @@ public class j2 extends JFrame {
 		});*/
 		
 		
-		btnNewButton.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.RED));
+		btnNewButton.setBorder(null);
 		btnNewButton.setBackground(Color.RED);
 		//btnNewButton.setForeground(Color.RED);
-		btnNewButton.setBounds(37, 104, 127, 50);
+		btnNewButton.setBounds(165, 90, 127, 50);
 		panel_1.add(btnNewButton);
 		
-		JButton btnPurchaseOrder = new JButton("Purchase Order");
+		JButton btnPurchaseOrder = new JButton("Export Car");
+		btnPurchaseOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				output o=new output();
+				dispose();
+				o.setVisible(true);
+				
+			}
+		});
 		btnPurchaseOrder.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.PINK));
 		btnPurchaseOrder.setBackground(Color.PINK);
-		btnPurchaseOrder.setBounds(260, 104, 127, 50);
+		btnPurchaseOrder.setBounds(165, 235, 127, 50);
 		panel_1.add(btnPurchaseOrder);
 		
-		JButton btnItemRegistry = new JButton("Item Registry\r\n");
+		JButton btnItemRegistry = new JButton("Car's In Inventory");
+		btnItemRegistry.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				table t=new table();
+				dispose();
+				t.setVisible(true);
+				
+			}
+		});
 		btnItemRegistry.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.YELLOW));
 		btnItemRegistry.setBackground(Color.YELLOW);
-		btnItemRegistry.setBounds(37, 199, 127, 50);
+		btnItemRegistry.setBounds(165, 162, 127, 50);
 		panel_1.add(btnItemRegistry);
 		
-		JButton btnSupplierRegistry = new JButton("Supplier Registry");
-		btnSupplierRegistry.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.ORANGE));
-		btnSupplierRegistry.setBackground(Color.ORANGE);
-		btnSupplierRegistry.setBounds(260, 199, 127, 50);
-		panel_1.add(btnSupplierRegistry);
-		
 		JLabel lblNewLabel = new JLabel("Inventory Management");
-		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
-		lblNewLabel.setBounds(37, 25, 155, 32);
+		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+		lblNewLabel.setBounds(130, 26, 243, 32);
 		panel_1.add(lblNewLabel);
 		
 		JButton btnNewButton_1 = new JButton("Log Out");
@@ -254,7 +222,7 @@ public class j2 extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnNewButton_1.setBounds(298, 348, 89, 23);
+		btnNewButton_1.setBounds(177, 315, 89, 23);
 		panel_1.add(btnNewButton_1);
 	}
 }

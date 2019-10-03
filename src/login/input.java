@@ -18,6 +18,8 @@ import javax.swing.JComboBox;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -33,10 +35,11 @@ import javax.swing.JTextField;
 public class input extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-
+	private JTextField car;
+	private JTextField plate;
+	private JTextField lisense;
+	public  String selectedBook;
+	public String x;
 	/**
 	 * Launch the application.
 	 */
@@ -106,52 +109,55 @@ public class input extends JFrame {
 		label.setBounds(518, 17, 135, 64);
 		panel.add(label);
 		
-		textField = new JTextField();
-		textField.setBounds(248, 177, 212, 28);
-		panel.add(textField);
-		textField.setColumns(10);
+		car = new JTextField();
+		car.setBounds(248, 177, 212, 28);
+		panel.add(car);
+		car.setColumns(10);
 		
 		JLabel lblNumberPlate = new JLabel("Number Plate");
 		lblNumberPlate.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		lblNumberPlate.setBounds(103, 236, 159, 28);
 		panel.add(lblNumberPlate);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(248, 236, 212, 28);
-		panel.add(textField_1);
+		plate = new JTextField();
+		plate.setColumns(10);
+		plate.setBounds(248, 236, 212, 28);
+		panel.add(plate);
 		
 		JLabel lblLisenseNumber = new JLabel("Lisense Number");
 		lblLisenseNumber.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		lblLisenseNumber.setBounds(103, 298, 159, 28);
 		panel.add(lblLisenseNumber);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(248, 298, 212, 28);
-		panel.add(textField_2);
+		lisense = new JTextField();
+		lisense.setColumns(10);
+		lisense.setBounds(248, 298, 212, 28);
+		panel.add(lisense);
 		
-		JButton btnNewButton = new JButton("Submit");
-		btnNewButton.setBounds(297, 367, 89, 23);
-		panel.add(btnNewButton);
-		
+
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String selectedBook=(String) comboBox.getSelectedItem();
 				
 				System.out.println("You selected "+selectedBook);
-				
-				
-				
-				
-				
-				
-				
-				
+				x=selectedBook;
+		
+			}
+		});
 
+		
+		JButton btnNewButton = new JButton("Submit");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+	
+				
+				System.out.println("You selected "+x);
+				//String selectedBook=(String) comboBox.getSelectedItem();
 				Connection con=null;
 		        Statement stmt=null;
+		        
+		    
 
 		        try {
 		            Class.forName("com.mysql.cj.jdbc.Driver");
@@ -160,20 +166,22 @@ public class input extends JFrame {
 		            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","root");
 		            System.out.print("Connection Successful");
 
-				
 		            System.out.println("\nInserting record....");
 		            stmt=con.createStatement();
-		            
-		            
-		            int i;
-	
-		            PreparedStatement pstate = con.prepareStatement( "INSERT INTO Registration (name)" +" values (?)");
+		            String s1=car.getText();
+		            String s2=plate.getText();
+		            String s3=lisense.getText();
+		           String query=("INSERT INTO Registration (name,car,plate,lisense)" +" values ('"+x+"','"+s1+"','"+s2+"','"+s3+"')");
 		           
-		            pstate.setString(1, selectedBook);
-	
-		           i=pstate.executeUpdate();
-		           System.out.println(i);
+		           stmt.executeUpdate(query);
+		           
+		           JOptionPane.showMessageDialog(null, "Insertion Successfull");
+		           
+		           j2 second=new j2();
+					dispose();
+				second.setVisible(true);
 		            con.close();
+		            
 		        }
 		        catch(ClassNotFoundException e)
 		        {
@@ -185,31 +193,16 @@ public class input extends JFrame {
 		            //Handle errors for JDBC
 		            se.printStackTrace();
 		        }
-
-				
-				
-				
 				
 				
 				
 			}
 		});
+		
 
+		btnNewButton.setBounds(297, 367, 89, 23);
+		panel.add(btnNewButton);
 
-		
-	
-		
-		
-		//comboBox.addItem("Select Company");
-		/*comboBox.addItem(compname[0]);
-		comboBox.addItem(compname[1]);
-		comboBox.addItem(compname[2]);
-		comboBox.addItem(compname[3]);*/
-		
-		
-		
-		
-		
 		
 	}
 }
