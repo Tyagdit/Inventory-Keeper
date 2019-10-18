@@ -19,6 +19,8 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 
 public class Userlogin extends JFrame {
@@ -37,8 +39,8 @@ public class Userlogin extends JFrame {
 					Userlogin frame = new Userlogin();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
-				//	UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-						UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+					//	UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
 					
 					
 				} catch (Exception e) {
@@ -56,71 +58,92 @@ public class Userlogin extends JFrame {
 		setResizable(false);
 		setBounds(100, 100, 710, 503);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(SystemColor.windowText);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.controlHighlight);
+		panel.setBackground(Color.BLACK);
 		panel.setBounds(0, 0, 694, 81);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("                 TOYOYA SHOWROOM\r\n");
+		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setBounds(137, 11, 405, 59);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(SystemColor.controlHighlight);
+		panel_1.setBackground(Color.BLACK);
 		panel_1.setBounds(0, 383, 694, 81);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("         TOYOYA SHOWROOM\r\n");
+		lblNewLabel_1.setForeground(Color.RED);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel_1.setBounds(191, 11, 360, 59);
 		panel_1.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(25, 108, 266, 171);
+		lblNewLabel_2.setBounds(25, 108, 218, 171);
 		contentPane.add(lblNewLabel_2);
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Dinesh\\Downloads\\toyota.png"));
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Dinesh\\Downloads\\t1.jfif"));
 		
-		JLabel lblNewLabel_3 = new JLabel("Username");
+		JLabel lblNewLabel_3 = new JLabel("Username :");
+		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_3.setBounds(329, 152, 132, 28);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblPassword = new JLabel("Password");
+		JLabel lblPassword = new JLabel("Password :");
+		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblPassword.setBounds(329, 205, 132, 28);
 		contentPane.add(lblPassword);
 		
-		user = new JTextField();
+		user = new JTextField("Username");
+		user.addFocusListener(new FocusListener() {
+		    @Override
+		    public void focusGained(FocusEvent e) {
+		        if (user.getText().equals("Username")) {
+		            user.setText("");
+		            user.setForeground(Color.BLACK);
+		        }
+		    }
+		    @Override
+		    public void focusLost(FocusEvent e) {
+		        if (user.getText().isEmpty()) {
+		            user.setForeground(Color.GRAY);
+		            user.setText("Username");
+		        }
+		    }
+		    });
+		
 		user.setBounds(407, 153, 150, 28);
 		contentPane.add(user);
 		user.setColumns(10);
-		
+		DatabaseConnect DataCon = new DatabaseConnect();
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addAncestorListener(new RequestFocusListener(false));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String user1 = user.getText();
-				String pass1 = String.valueOf(pass.getPassword());
-				if(user1.trim().equals("dinesh") && pass1.trim().equals("pass"))
-				{
-					System.out.println("Login Successfull");
+				String username = user.getText();
+                String password = String.valueOf(pass.getPassword());
+                
+              if((DataCon.checkUserLogin(username, password))){
+            	  System.out.println("Login Successfull");
 					//Second Frame Called
-					dashori d=new dashori();
+					dashori dash=new dashori();
 					dispose();
-					d.setLocationRelativeTo(null);
-					d.setVisible(true);
-				}
-				else
-				{
-					 JOptionPane.showMessageDialog(null, "Wrong UserName/Password");
-				}
+					dash.setLocationRelativeTo(null);
+					dash.setVisible(true);
+              }
+              else{
+            	  System.out.println("Invalid Login ID/Password");
+              }
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -137,9 +160,10 @@ public class Userlogin extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("TOYOTA");
+		lblNewLabel_5.setBackground(Color.WHITE);
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 21));
 		lblNewLabel_5.setForeground(Color.RED);
-		lblNewLabel_5.setBounds(113, 290, 150, 28);
+		lblNewLabel_5.setBounds(93, 290, 150, 28);
 		contentPane.add(lblNewLabel_5);
 	}
 }

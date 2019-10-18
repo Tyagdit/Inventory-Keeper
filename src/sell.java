@@ -65,7 +65,7 @@ public class sell extends JFrame {
             System.out.println("\nDriver loaded");
             String s="Select * from store ";
        
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","root");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","");
             
             System.out.print("Connection Successful");
             stmt=con.createStatement(); 
@@ -214,27 +214,27 @@ public class sell extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Etios Cross");
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_5.setBounds(115, 141, 65, 14);
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_5.setBounds(115, 141, 85, 14);
 		contentPane.add(lblNewLabel_5);
 		
 		JLabel lblFortuner = new JLabel("Fortuner");
-		lblFortuner.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblFortuner.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblFortuner.setBounds(507, 141, 65, 14);
 		contentPane.add(lblFortuner);
 		
 		JLabel lblNewLabel_6 = new JLabel("Glanza");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_6.setBounds(335, 292, 46, 14);
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_6.setBounds(335, 292, 67, 14);
 		contentPane.add(lblNewLabel_6);
 		
 		JLabel lblInnovaCrysta = new JLabel("Innova Crysta");
-		lblInnovaCrysta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblInnovaCrysta.setBounds(115, 287, 85, 14);
+		lblInnovaCrysta.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblInnovaCrysta.setBounds(115, 287, 109, 14);
 		contentPane.add(lblInnovaCrysta);
 		
 		JLabel lblEtiosCross = new JLabel("Corolla Altis");
-		lblEtiosCross.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblEtiosCross.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblEtiosCross.setBounds(507, 292, 85, 14);
 		contentPane.add(lblEtiosCross);
 		

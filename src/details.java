@@ -71,7 +71,7 @@ public class details extends JFrame {
 		
 		
 
-		comboBox_1.addMouseListener(new MouseAdapter() {
+	/*	comboBox_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
@@ -82,6 +82,20 @@ public class details extends JFrame {
 				
 			}
 		});
+	*/
+		
+		comboBox_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String color=(String) comboBox_1.getSelectedItem();
+				
+				
+				System.out.println("You selected "+color);
+				y=color;
+			}
+		});
+		
+		
 		
 		
 	
@@ -289,7 +303,7 @@ public class details extends JFrame {
 		            Class.forName("com.mysql.cj.jdbc.Driver");
 		            System.out.println("\nDriver loaded");
 
-     	            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","root");
+     	            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","");
 		            System.out.print("Connection Successful");
 		            System.out.println("\nInserting record....");
 		            stmt=con.createStatement();

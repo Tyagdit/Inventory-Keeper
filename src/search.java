@@ -20,6 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import java.awt.SystemColor;
 
 public class search extends JFrame {
 
@@ -49,15 +50,10 @@ public class search extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 710, 503);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(SystemColor.controlShadow);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblSelectCarCridentials = new JLabel("Select Car Credential");
-		lblSelectCarCridentials.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSelectCarCridentials.setBounds(272, 21, 367, 39);
-		contentPane.add(lblSelectCarCridentials);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(110, 104, 154, 29);
@@ -132,7 +128,7 @@ public class search extends JFrame {
 	                Class.forName("com.mysql.cj.jdbc.Driver");
 	                System.out.println("\nDriver loaded");
 
-	                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","root");
+	                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","");
 	                System.out.print("Connection Successful");
 
 	    		
@@ -206,6 +202,25 @@ public class search extends JFrame {
 		});
 		btnNewButton.setBounds(313, 156, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JLabel lblSearchACar = new JLabel("Search a Car");
+		lblSearchACar.setForeground(Color.BLACK);
+		lblSearchACar.setFont(new Font("Sitka Display", Font.BOLD, 37));
+		lblSearchACar.setBackground(Color.WHITE);
+		lblSearchACar.setBounds(251, 26, 247, 39);
+		contentPane.add(lblSearchACar);
+		
+		JButton btnHome = new JButton("HOME");
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dashori dash=new dashori();
+				dispose();
+				dash.setLocationRelativeTo(null);
+				dash.setVisible(true);
+			}
+		});
+		btnHome.setBounds(313, 430, 89, 23);
+		contentPane.add(btnHome);
 		
 		
 	}

@@ -15,6 +15,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
 
 public class tables extends JFrame {
 
@@ -22,6 +27,7 @@ public class tables extends JFrame {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private JButton btnHome;
+	private JLabel lblCarDetails;
 
 	/**
 	 * Launch the application.
@@ -46,11 +52,13 @@ public class tables extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 710, 503);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.controlShadow);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnNewButton = new JButton("LOAD DATA");
-		btnNewButton.setBounds(297, 11, 121, 23);
+		JButton btnNewButton = new JButton("Refresh");
+		btnNewButton.setBackground(UIManager.getColor("Button.foreground"));
+		btnNewButton.setBounds(297, 78, 121, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -63,7 +71,7 @@ public class tables extends JFrame {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 System.out.println("\nDriver loaded");
 
-                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","root");
+                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","");
                 System.out.print("Connection Successful");
 
     		
@@ -128,7 +136,7 @@ public class tables extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 69, 662, 283);
+		scrollPane.setBounds(10, 110, 662, 283);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -146,7 +154,14 @@ public class tables extends JFrame {
 			
 			
 		});
-		btnHome.setBounds(297, 417, 89, 23);
+		btnHome.setBounds(318, 417, 89, 23);
 		contentPane.add(btnHome);
+		
+		lblCarDetails = new JLabel("Car Details");
+		lblCarDetails.setForeground(Color.BLACK);
+		lblCarDetails.setBackground(Color.WHITE);
+		lblCarDetails.setFont(new Font("Sitka Display", Font.BOLD, 37));
+		lblCarDetails.setBounds(275, 11, 247, 39);
+		contentPane.add(lblCarDetails);
 	}
 }

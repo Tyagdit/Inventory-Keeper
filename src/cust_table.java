@@ -20,6 +20,9 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 
 public class cust_table extends JFrame {
 
@@ -52,18 +55,19 @@ public class cust_table extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 710, 503);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.controlShadow);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(89, 82, 554, 258);
+		scrollPane.setBounds(95, 130, 554, 258);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton = new JButton("LOAD DATA");
+		JButton btnNewButton = new JButton("Refresh");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -163,12 +167,14 @@ public class cust_table extends JFrame {
 					
 				
 				
-				
+			
 			}
 		});
-		btnNewButton.setBounds(319, 31, 119, 23);
+		btnNewButton.setBounds(303, 94, 119, 23);
 		contentPane.add(btnNewButton);
 		
+	            
+	            
 		button = new JButton("HOME");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -179,18 +185,47 @@ public class cust_table extends JFrame {
 				
 			}
 		});
-		button.setBounds(319, 397, 89, 23);
+		button.setBounds(323, 430, 89, 23);
 		contentPane.add(button);
 		
 		lblNewLabel = new JLabel("Total Sales:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(456, 340, 107, 23);
+		lblNewLabel.setBounds(447, 399, 107, 23);
 		contentPane.add(lblNewLabel);
 		
 		totalsum = new JLabel("");
+		totalsum.setForeground(Color.RED);
 		totalsum.setFont(new Font("Tahoma", Font.BOLD, 17));
-		totalsum.setBounds(549, 340, 94, 23);
+		totalsum.setBounds(532, 399, 94, 23);
 		contentPane.add(totalsum);
+		
+		JLabel lblNewLabel_1 = new JLabel(" ");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Dinesh\\Downloads\\toyota(1).png"));
+		lblNewLabel_1.setBounds(28, 0, 150, 106);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel label = new JLabel(" ");
+		label.setIcon(new ImageIcon("C:\\Users\\Dinesh\\Downloads\\toyota(1).png"));
+		label.setBounds(515, 0, 150, 106);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("TOYOTA");
+		label_1.setForeground(Color.RED);
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		label_1.setBounds(54, 98, 98, 28);
+		contentPane.add(label_1);
+		
+		JLabel label_2 = new JLabel("TOYOTA");
+		label_2.setForeground(Color.RED);
+		label_2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		label_2.setBounds(541, 98, 98, 28);
+		contentPane.add(label_2);
+		
+		JLabel lblCustomerDetails = new JLabel("Customer Details");
+		lblCustomerDetails.setForeground(Color.BLACK);
+		lblCustomerDetails.setFont(new Font("Sitka Display", Font.BOLD, 37));
+		lblCustomerDetails.setBackground(Color.WHITE);
+		lblCustomerDetails.setBounds(200, 11, 293, 39);
+		contentPane.add(lblCustomerDetails);
 	}
-
 }

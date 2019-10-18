@@ -14,19 +14,23 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.SystemColor;
 
 public class dates extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
-	public String s_date;
+	public String s_date1,s_date2;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -51,28 +55,72 @@ public class dates extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 710, 503);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(SystemColor.controlShadow);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Date :");
+		JLabel lblNewLabel = new JLabel("From\r\n");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel.setBounds(235, 138, 46, 14);
+		lblNewLabel.setBounds(196, 111, 46, 14);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(280, 136, 86, 20);
+		textField = new JTextField("YYYY-MM-DD");
+		
+		textField.addFocusListener(new FocusListener() {
+		    @Override
+		    public void focusGained(FocusEvent e) {
+		        if (textField.getText().equals("YYYY-MM-DD")) {
+		            textField.setText("");
+		            textField.setForeground(Color.BLACK);
+		        }
+		    }
+		    @Override
+		    public void focusLost(FocusEvent e) {
+		        if (textField.getText().isEmpty()) {
+		            textField.setForeground(Color.GRAY);
+		            textField.setText("YYYY-MM-DD");
+		        }
+		    }
+		    });
+		
+		
+		textField_1 = new JTextField("YYYY-MM-DD");
+		
+		
+		
+		textField_1.addFocusListener(new FocusListener() {
+		    @Override
+		    public void focusGained(FocusEvent e) {
+		        if (textField_1.getText().equals("YYYY-MM-DD")) {
+		            textField_1.setText("");
+		            textField_1.setForeground(Color.BLACK);
+		        }
+		    }
+		    @Override
+		    public void focusLost(FocusEvent e) {
+		        if (textField_1.getText().isEmpty()) {
+		            textField_1.setForeground(Color.GRAY);
+		            textField_1.setText("YYYY-MM-DD");
+		        }
+		    }
+		    });
+		
+		
+		
+		textField_1.setColumns(10);
+		textField_1.setBounds(400, 136, 122, 20);
+		contentPane.add(textField_1);
+		
+		
+		textField.setBounds(172, 136, 122, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("YYYY-MM-DD");
-		lblNewLabel_1.setBounds(376, 139, 95, 14);
-		contentPane.add(lblNewLabel_1);
-		
 		JLabel totalsum = new JLabel("");
+		totalsum.setForeground(Color.RED);
 		totalsum.setFont(new Font("Tahoma", Font.BOLD, 17));
-		totalsum.setBounds(555, 412, 94, 23);
+		totalsum.setBounds(529, 412, 94, 23);
 		contentPane.add(totalsum);
 	
 		
@@ -85,15 +133,20 @@ public class dates extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		
-		s_date=textField.getText();
-		System.out.print(s_date);
+		s_date1=textField.getText();
+		System.out.print(s_date1);
 		
 		JButton btnNewButton = new JButton("Submit");
+		btnNewButton.addAncestorListener(new RequestFocusListener(false));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				s_date=textField.getText();
-				System.out.print(s_date);
+				s_date1=textField.getText();
+				System.out.print(s_date1);
+				
+				
+				s_date2=textField_1.getText();
+				System.out.print(s_date2);
 				
 				
 				Connection con=null;
@@ -106,7 +159,7 @@ public class dates extends JFrame {
 	                Class.forName("com.mysql.cj.jdbc.Driver");
 	                System.out.println("\nDriver loaded");
 
-	                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","root");
+	                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","");
 	                System.out.print("Connection Successful");
 
 	    		
@@ -123,7 +176,11 @@ public class dates extends JFrame {
 	                model.addColumn("Price");
 	                model.addColumn("Date");
 	                
-	                String query="select * from customer where date="+"'"+s_date+"'"+";";;
+	              //  String query="select * from customer where date="+"'"+s_date+"'"+";";;
+	                
+	                
+	                String query="select * from customer where date between "+"'"+s_date1+"'"+" and "+"'"+s_date2+"'"+";";;
+	                
 	                
 	                stmt=con.createStatement();
 	                rs=stmt.executeQuery(query);
@@ -156,13 +213,13 @@ public class dates extends JFrame {
 	                
 	               table.setModel(model);
 	               table.setAutoResizeMode(0);
-	               table.getColumnModel().getColumn(0).setPreferredWidth(150);
-	               table.getColumnModel().getColumn(1).setPreferredWidth(150);
+	               table.getColumnModel().getColumn(0).setPreferredWidth(50);
+	               table.getColumnModel().getColumn(1).setPreferredWidth(100);
 	               table.getColumnModel().getColumn(2).setPreferredWidth(120);
-	               table.getColumnModel().getColumn(3).setPreferredWidth(150);
-	               table.getColumnModel().getColumn(4).setPreferredWidth(120);
-	               table.getColumnModel().getColumn(5).setPreferredWidth(120);
-	             table.getColumnModel().getColumn(6).setPreferredWidth(120);
+	               table.getColumnModel().getColumn(3).setPreferredWidth(100);
+	               table.getColumnModel().getColumn(4).setPreferredWidth(80);
+	               table.getColumnModel().getColumn(5).setPreferredWidth(64);
+	             table.getColumnModel().getColumn(6).setPreferredWidth(80);
 	             
 	             
 	             
@@ -196,12 +253,12 @@ public class dates extends JFrame {
 			}
 		});
 		
-		btnNewButton.setBounds(280, 163, 89, 23);
+		btnNewButton.setBounds(298, 164, 99, 23);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblEnterDateOf = new JLabel("Enter Date Of which You need History Off");
-		lblEnterDateOf.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblEnterDateOf.setBounds(180, 23, 367, 39);
+		lblEnterDateOf.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblEnterDateOf.setBounds(150, 25, 420, 39);
 		contentPane.add(lblEnterDateOf);
 		
 		JLabel label = new JLabel("Total Sales:");
@@ -225,6 +282,13 @@ public class dates extends JFrame {
 		});
 		btnNewButton_1.setBounds(34, 420, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblTo = new JLabel("To");
+		lblTo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblTo.setBounds(428, 112, 46, 14);
+		contentPane.add(lblTo);
+		
+	
 		
 	
 		

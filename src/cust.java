@@ -21,6 +21,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class cust extends JFrame {
 
@@ -58,7 +59,7 @@ public class cust extends JFrame {
 		setResizable(false);
 		setBounds(100, 100, 710, 503);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(SystemColor.controlShadow);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -74,8 +75,8 @@ public class cust extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Customer Details And Payments");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(222, 35, 258, 37);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_2.setBounds(192, 49, 311, 55);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel label = new JLabel("TOYOTA");
@@ -172,7 +173,7 @@ public class cust extends JFrame {
 		            Class.forName("com.mysql.cj.jdbc.Driver");
 		            System.out.println("\nDriver loaded");
 		            
-		            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","root");
+		            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","");
 		            System.out.print("Connection Successful");
 
 		           // System.out.println("You selected "+x);

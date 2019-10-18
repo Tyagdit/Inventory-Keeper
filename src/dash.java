@@ -11,6 +11,8 @@ import javax.swing.JComboBox;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -24,6 +26,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.SystemColor;
 
 public class dash extends JFrame {
 
@@ -58,7 +61,7 @@ public class dash extends JFrame {
 		setResizable(false);
 		setBounds(100, 100, 710, 503);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(SystemColor.controlShadow);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -105,7 +108,24 @@ public class dash extends JFrame {
 	
 		
 		
-		textField = new JTextField();
+		textField = new JTextField("YYYY-MM-DD");
+		textField.addFocusListener(new FocusListener() {
+		    @Override
+		    public void focusGained(FocusEvent e) {
+		        if (textField.getText().equals("YYYY-MM-DD")) {
+		            textField.setText("");
+		            textField.setForeground(Color.BLACK);
+		        }
+		    }
+		    @Override
+		    public void focusLost(FocusEvent e) {
+		        if (textField.getText().isEmpty()) {
+		            textField.setForeground(Color.GRAY);
+		            textField.setText("YYYY-MM-DD");
+		        }
+		    }
+		    });
+		
 		textField.setBounds(176, 246, 140, 33);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -149,7 +169,24 @@ public class dash extends JFrame {
 		label_1.setBounds(511, 98, 98, 28);
 		contentPane.add(label_1);
 		
-		textField_2 = new JTextField();
+		textField_2 = new JTextField("in Lakhs");
+		textField_2.addFocusListener(new FocusListener() {
+		    @Override
+		    public void focusGained(FocusEvent e) {
+		        if (textField_2.getText().equals("in Lakhs")) {
+		            textField_2.setText("");
+		            textField_2.setForeground(Color.BLACK);
+		        }
+		    }
+		    @Override
+		    public void focusLost(FocusEvent e) {
+		        if (textField_2.getText().isEmpty()) {
+		            textField_2.setForeground(Color.GRAY);
+		            textField_2.setText("in Lakhs");
+		        }
+		    }
+		    });
+		
 		textField_2.setColumns(10);
 		textField_2.setBounds(389, 151, 140, 33);
 		contentPane.add(textField_2);
@@ -223,7 +260,7 @@ public class dash extends JFrame {
 		            
 		            
 		            
-		            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","root");
+		            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","");
 		            System.out.print("Connection Successful");
 
 		            System.out.println("You selected "+x);
@@ -257,7 +294,7 @@ public class dash extends JFrame {
 		        	   JOptionPane.showMessageDialog(null, "Error at Quantity / Price both must be in digits");
 		           }
 		           
-		          else if(!t.matches("^2([0-9]{3})-([012][0-9]|3[0-2])-(0[0-9]|1[0-2])$"))
+		          else if(!t.matches("^2([0-9]{3})-(0[0-9]|1[0-2])-([012][0-9]|3[0-2])$"))
 		          {
 		        	  JOptionPane.showMessageDialog(null, "Date Format is Wrong");
 		          }
@@ -301,11 +338,6 @@ public class dash extends JFrame {
 		btnNewButton.setBounds(317, 410, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblInLakhs = new JLabel("In lakhs");
-		lblInLakhs.setFont(new Font("Sitka Banner", Font.PLAIN, 12));
-		lblInLakhs.setBounds(539, 160, 46, 14);
-		contentPane.add(lblInLakhs);
-		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -318,10 +350,6 @@ public class dash extends JFrame {
 		});
 		btnBack.setBounds(49, 410, 89, 23);
 		contentPane.add(btnBack);
-		
-		JLabel lblNewLabel_4 = new JLabel("YYYY/MM/DD");
-		lblNewLabel_4.setBounds(92, 255, 74, 14);
-		contentPane.add(lblNewLabel_4);
 		
 		
 		

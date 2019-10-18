@@ -42,7 +42,7 @@ public class dashori extends JFrame {
 		setResizable(false);
 		setBounds(100, 100, 710, 503);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("InternalFrame.borderLight"));
+		contentPane.setBackground(SystemColor.controlShadow);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -59,8 +59,8 @@ public class dashori extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("Dash Board");
 		lblNewLabel_2.setForeground(UIManager.getColor("InternalFrame.activeTitleForeground"));
-		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 23));
-		lblNewLabel_2.setBounds(278, 39, 195, 44);
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 31));
+		lblNewLabel_2.setBounds(265, 65, 234, 44);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel label = new JLabel("TOYOTA");
@@ -119,7 +119,12 @@ public class dashori extends JFrame {
 		JButton btnNewButton_1 = new JButton("LogOut");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				//System.exit(0);
+				Userlogin u=new Userlogin();
+				dispose();
+				u.setLocationRelativeTo(null);
+				u.setVisible(true);
+				
 			}
 		});
 		btnNewButton_1.setBounds(306, 430, 89, 23);
