@@ -22,6 +22,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import javax.swing.JRadioButton;
+import javax.swing.UIManager;
+import javax.swing.JComboBox;
 
 public class cust extends JFrame {
 
@@ -29,8 +32,7 @@ public class cust extends JFrame {
 	private JTextField custname3;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
-	private JPasswordField passwordField;
+	private JTextField emailfield;
 	
 	/**
 	 * Launch the application.
@@ -56,48 +58,37 @@ public class cust extends JFrame {
 	public cust(String car,String color,String rate) 
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
-		setBounds(100, 100, 710, 503);
+		//setResizable(false);
+		setBounds(100, 100, 890, 587);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.controlShadow);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Dinesh\\Downloads\\toyota(1).png"));
-		lblNewLabel.setBounds(10, 11, 178, 93);
-		contentPane.add(lblNewLabel);
-		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Dinesh\\Downloads\\toyota(1).png"));
-		lblNewLabel_1.setBounds(539, 11, 145, 93);
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Aditya Desigar\\Desktop\\Projects\\SDL_DBMS\\photos\\toyota.png"));
+		lblNewLabel_1.setBounds(530, 97, 270, 205);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Customer Details And Payments");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel_2.setBounds(192, 49, 311, 55);
+		JLabel lblNewLabel_2 = new JLabel("CUSTOMER DETAILS");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 23));
+		lblNewLabel_2.setBounds(327, 11, 288, 55);
 		contentPane.add(lblNewLabel_2);
-		
-		JLabel label = new JLabel("TOYOTA");
-		label.setForeground(Color.RED);
-		label.setFont(new Font("Tahoma", Font.BOLD, 18));
-		label.setBounds(33, 115, 98, 28);
-		contentPane.add(label);
 		
 		JLabel label_1 = new JLabel("TOYOTA");
 		label_1.setForeground(Color.RED);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		label_1.setBounds(564, 115, 98, 28);
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 26));
+		label_1.setBounds(612, 332, 113, 28);
 		contentPane.add(label_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Customer Name :");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_3.setBounds(197, 153, 113, 28);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_3.setBounds(23, 104, 128, 28);
 		contentPane.add(lblNewLabel_3);
 		
 		custname3 = new JTextField();
-		custname3.setBounds(320, 158, 160, 20);
+		custname3.setBounds(216, 106, 179, 28);
 		contentPane.add(custname3);
 		custname3.setColumns(10);
 		
@@ -113,46 +104,78 @@ public class cust extends JFrame {
 		
 		
 		
-		JLabel lblPhoneNumber = new JLabel("Phone Number :");
-		lblPhoneNumber.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPhoneNumber.setBounds(197, 208, 113, 28);
+		JLabel lblPhoneNumber = new JLabel("Contact no :");
+		lblPhoneNumber.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPhoneNumber.setBounds(23, 226, 113, 28);
 		contentPane.add(lblPhoneNumber);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(320, 213, 160, 20);
+		textField_1.setBounds(216, 232, 179, 28);
 		contentPane.add(textField_1);
 		
 		JLabel lblAddress = new JLabel("Address :");
-		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblAddress.setBounds(197, 271, 113, 28);
+		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblAddress.setBounds(23, 160, 113, 28);
 		contentPane.add(lblAddress);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(320, 271, 160, 44);
+		textField_2.setBounds(216, 154, 179, 44);
 		contentPane.add(textField_2);
 		
-		JLabel lblCardNumber = new JLabel("Card Number :");
-		lblCardNumber.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCardNumber.setBounds(197, 352, 113, 28);
+		JLabel lblCardNumber = new JLabel("Expected Delivery Date :");
+		lblCardNumber.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblCardNumber.setBounds(23, 336, 167, 28);
 		contentPane.add(lblCardNumber);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(320, 357, 160, 20);
-		contentPane.add(textField_3);
-		
-		JLabel lblPin = new JLabel("Pin : ");
-		lblPin.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPin.setBounds(197, 402, 113, 28);
+		JLabel lblPin = new JLabel("Mode of Payment :");
+		lblPin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPin.setBounds(23, 407, 148, 28);
 		contentPane.add(lblPin);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(320, 407, 160, 20);
-		contentPane.add(passwordField);
+		JLabel lblEmailId = new JLabel("Email id :");
+		lblEmailId.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblEmailId.setBounds(23, 283, 89, 28);
+		contentPane.add(lblEmailId);
 		
-		JButton btnNewButton = new JButton("Submit");
+		emailfield = new JTextField();
+		emailfield.setBounds(216, 283, 179, 28);
+		contentPane.add(emailfield);
+		emailfield.setColumns(10);
+		
+		JRadioButton rdbtncash = new JRadioButton("Cash");
+		rdbtncash.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		rdbtncash.setBackground(SystemColor.activeCaptionBorder);
+		rdbtncash.setBounds(216, 412, 75, 23);
+		contentPane.add(rdbtncash);
+		
+		JRadioButton rdbtnCredit = new JRadioButton("Credit");
+		rdbtnCredit.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		rdbtnCredit.setBackground(SystemColor.activeCaptionBorder);
+		rdbtnCredit.setBounds(315, 412, 82, 23);
+		contentPane.add(rdbtnCredit);
+		
+		JRadioButton rdbtnDebit = new JRadioButton("Debit");
+		rdbtnDebit.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		rdbtnDebit.setBackground(SystemColor.activeCaptionBorder);
+		rdbtnDebit.setBounds(427, 412, 75, 23);
+		contentPane.add(rdbtnDebit);
+		
+		JRadioButton rdbtnNetBanking = new JRadioButton("Net Banking");
+		rdbtnNetBanking.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		rdbtnNetBanking.setBackground(SystemColor.activeCaptionBorder);
+		rdbtnNetBanking.setBounds(535, 412, 113, 23);
+		contentPane.add(rdbtnNetBanking);
+		
+		JRadioButton rdbtnCheque = new JRadioButton("Cheque");
+		rdbtnCheque.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		rdbtnCheque.setBackground(SystemColor.activeCaptionBorder);
+		rdbtnCheque.setBounds(675, 412, 73, 23);
+		contentPane.add(rdbtnCheque);
+		
+		JButton btnNewButton = new JButton("SUBMIT");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -193,9 +216,8 @@ public class cust extends JFrame {
 		    		String t2 = textField_2.getText();
 		    		System.out.print(t2);
 		    		
-		    		String t5 = textField_3.getText();
-		    		System.out.print(t2);
 		    		
+		    		String t6 = emailfield.getText();
 		    		
 		            System.out.print(car);
 		            
@@ -225,10 +247,8 @@ public class cust extends JFrame {
 		        	  JOptionPane.showMessageDialog(null, "Customer no is not valid");
 		          }
 		          
-		          
-		          
-		          else if(!t5.matches("^[0-9]{16}$"))  {
-		        	  JOptionPane.showMessageDialog(null, "Customer card no is not valid");
+		          else if(!t6.matches("^[a-z0-9_-]+@[a-z0-9]+(\\.[a-z]+){1,2}")) {
+		        	JOptionPane.showMessageDialog(null,"Inavlid email id");  
 		          }
 		          
 		           else
@@ -238,10 +258,6 @@ public class cust extends JFrame {
 			        	String q ="Update store set quantity = quantity-1 where model ="+"'"+car+"'"+ "and color="+"'"+color+"'"+";" ;
 			        	stmt.executeUpdate(q);
 			        	
-			        	
-			        	
-		        	 
-		        	   
 		              stmt.executeUpdate(query);
 		           
 		           JOptionPane.showMessageDialog(null, "THANK YOU FOR CHOOSING US");
@@ -249,8 +265,6 @@ public class cust extends JFrame {
 		           
 		        }
 		
-		      
-		        
 		        catch(ClassNotFoundException e1)
 		        {
 		            System.out.print("Exception "+e1.getMessage());
@@ -270,10 +284,11 @@ public class cust extends JFrame {
 			
 			}
 		});
-		btnNewButton.setBounds(564, 430, 89, 23);
+		btnNewButton.setBounds(503, 477, 98, 37);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("HOME");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dashori d =new dashori();
@@ -282,8 +297,12 @@ public class cust extends JFrame {
 				d.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(47, 430, 89, 23);
+		btnNewButton_1.setBounds(256, 477, 98, 37);
 		contentPane.add(btnNewButton_1);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setBounds(216, 341, 179, 28);
+		contentPane.add(comboBox);
 	}
-
 }
