@@ -213,7 +213,7 @@ public class search extends JFrame {
 		JButton btnHome = new JButton("HOME");
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dashori dash=new dashori();
+				dashboard dash=new dashboard();
 				dispose();
 				dash.setLocationRelativeTo(null);
 				dash.setVisible(true);

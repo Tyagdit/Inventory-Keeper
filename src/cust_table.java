@@ -81,12 +81,12 @@ public class cust_table extends JFrame {
 	                Class.forName("com.mysql.cj.jdbc.Driver");
 	                System.out.println("\nDriver loaded");
 
-	                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","root");
+	                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","");
 	                System.out.print("Connection Successful");
 
 	    		
 	                System.out.println("\nInserting record....");
-	               // stmt=con.createStatement();
+	             
 
 	                DefaultTableModel model=new DefaultTableModel();
 	                
@@ -113,7 +113,7 @@ public class cust_table extends JFrame {
 	            	   model.addRow(new Object[]
 	            	   {
 	            		   rs.getString("name"),
-	            		   rs.getString("number"),
+	            		   rs.getString("contactno"),
 	            		   rs.getString("address"),
 	            		   rs.getString("car"),
 	            		   rs.getString("color"),
@@ -178,7 +178,7 @@ public class cust_table extends JFrame {
 		button = new JButton("HOME");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dashori d =new dashori();
+				dashboard d =new dashboard();
 				dispose();
 				d.setLocationRelativeTo(null);
 				d.setVisible(true);

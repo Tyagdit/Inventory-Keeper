@@ -28,7 +28,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 
-public class dash extends JFrame {
+public class importcar extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -44,7 +44,7 @@ public class dash extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					dash frame = new dash();
+					importcar frame = new importcar();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +56,7 @@ public class dash extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public dash() {
+	public importcar() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 710, 503);
@@ -294,7 +294,7 @@ public class dash extends JFrame {
 		        	   JOptionPane.showMessageDialog(null, "Error at Quantity / Price both must be in digits");
 		           }
 		           
-		          else if(!t.matches("^2([0-9]{3})-(0[0-9]|1[0-2])-([012][0-9]|3[0-2])$"))
+		          else if(!t.matches("^2([0-9]{3})-(0[0-9]|1[0-2])-([012][0-9]|3[0-1])$"))
 		          {
 		        	  JOptionPane.showMessageDialog(null, "Date Format is Wrong");
 		          }
@@ -341,7 +341,7 @@ public class dash extends JFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dashori d=new dashori();
+				dashboard d=new dashboard();
 				dispose();
 				d.setLocationRelativeTo(null);
 				d.setVisible(true);		

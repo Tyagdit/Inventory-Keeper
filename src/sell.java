@@ -241,7 +241,7 @@ public class sell extends JFrame {
 		JButton btnNewButton = new JButton("Home");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dashori d=new dashori();
+				dashboard d=new dashboard();
 				dispose();
 				d.setLocationRelativeTo(null);
 				d.setVisible(true);

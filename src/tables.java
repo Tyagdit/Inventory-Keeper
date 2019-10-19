@@ -145,7 +145,7 @@ public class tables extends JFrame {
 		btnHome = new JButton("HOME");
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dashori d =new dashori();
+				dashboard d =new dashboard();
 				dispose();
 				d.setLocationRelativeTo(null);
 				d.setVisible(true);

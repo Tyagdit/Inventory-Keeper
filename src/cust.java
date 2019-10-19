@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
@@ -174,24 +175,25 @@ public class cust extends JFrame {
 		rdbtnCheque.setBounds(675, 412, 73, 23);
 		contentPane.add(rdbtnCheque);
 		
+		ButtonGroup bg =new ButtonGroup();
+		bg.add(rdbtncash);
+		bg.add(rdbtnCredit);
+		bg.add(rdbtnDebit);
+		bg.add(rdbtnNetBanking);
+		bg.add(rdbtnCheque);
+		
 		JButton btnNewButton = new JButton("SUBMIT");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
 				Connection con=null;
 		        Statement stmt=null;
 		        
-		        
-		   	 
 				   SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 				   String date = sdf.format(new Date());
 				   System.out.println(date);
 		        
-				   
-		    
-
 		        try {
 		            Class.forName("com.mysql.cj.jdbc.Driver");
 		            System.out.println("\nDriver loaded");
@@ -224,12 +226,36 @@ public class cust extends JFrame {
 		            System.out.print(car);
 		            System.out.print(color);
 		            
-		           
-		            
 		            //String query=("INSERT INTO customer (name,number,address,car,color,price,date)" +" values ('"+t+"','"+t1+"','"+t2+"','"+car+"','"+color+"','"+rate+"')");
+		            String radioButt = new String();
+		            
+		            if(rdbtncash.isSelected()) {
+		            	radioButt = rdbtncash.getText();
+		            }
+		            else if(rdbtnCredit.isSelected()) {
+		            	radioButt =rdbtnCredit.getText();
+		            }
+		            else if(rdbtnDebit.isSelected()) {
+		            	radioButt = rdbtnDebit.getText();
+		            }
+		            else if(rdbtnNetBanking.isSelected()) {
+		            	radioButt = rdbtnNetBanking.getText();
+		            }
+		            else if(rdbtnCheque.isSelected()) {
+		            	radioButt = rdbtnCheque.getText();
+		            }
+		            System.out.println("You Selected : " + radioButt);
+		           // String query=("INSERT INTO customer (name,address,car,color,price,date)" +" values ('"+t+"','"+t2+"','"+car+"','"+color+"','"+rate+"','"+date+"')");	            
 		            
 		            
-		            String query=("INSERT INTO customer (name,number,address,car,color,price,date)" +" values ('"+t+"','"+t1+"','"+t2+"','"+car+"','"+color+"','"+rate+"','"+date+"')");	            
+		            String deldate="2019-09-10";
+		  
+		            String payment=radioButt;
+		            
+		            String query=("INSERT INTO customer (name,contactno,address,email,car,color,price,date,deldate,payment)" +" values ('"+t+"','"+t1+"','"+t2+"','"+t6+"','"+car+"','"+color+"','"+rate+"','"+date+"','"+deldate+"','"+payment+"')");
+		            
+		            
+		            
 		            
 		          if(t.isEmpty() || t1.isEmpty() || t2.isEmpty() )
 		           {
@@ -247,7 +273,7 @@ public class cust extends JFrame {
 		        	  JOptionPane.showMessageDialog(null, "Customer no is not valid");
 		          }
 		          
-		          else if(!t6.matches("^[a-z0-9_-]+@[a-z0-9]+(\\.[a-z]+){1,2}")) {
+		          else if(!t6.matches("^[a-z0-9_-]+@[a-z0-9]+(\\.[a-z]+){1,2}$")) {
 		        	JOptionPane.showMessageDialog(null,"Inavlid email id");  
 		          }
 		          
@@ -261,6 +287,16 @@ public class cust extends JFrame {
 		              stmt.executeUpdate(query);
 		           
 		           JOptionPane.showMessageDialog(null, "THANK YOU FOR CHOOSING US");
+		           
+		           
+		           mailframe m=new mailframe();
+					dispose();
+					m.setLocationRelativeTo(null);
+					m.setVisible(true);
+		           
+		           
+		           
+		           
 		           }
 		           
 		        }
@@ -291,7 +327,7 @@ public class cust extends JFrame {
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dashori d =new dashori();
+				dashboard d =new dashboard();
 				dispose();
 				d.setLocationRelativeTo(null);
 				d.setVisible(true);

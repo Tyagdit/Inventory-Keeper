@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
-public class dashori extends JFrame {
+public class dashboard extends JFrame {
 
 	private JPanel contentPane;
 
@@ -25,7 +25,7 @@ public class dashori extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					dashori frame = new dashori();
+					dashboard frame = new dashboard();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class dashori extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public dashori() {
+	public dashboard() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 710, 503);
@@ -79,10 +79,12 @@ public class dashori extends JFrame {
 		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dash d1=new dash();
+				importcar d1=new importcar();
 				dispose();
 				d1.setLocationRelativeTo(null);
+				
 				d1.setVisible(true);
+			
 			}
 		});
 		btnNewButton.setBackground(SystemColor.activeCaption);
@@ -167,6 +169,12 @@ public class dashori extends JFrame {
 				dispose();
 				s.setLocationRelativeTo(null);
 				s.setVisible(true);
+				try {
+					Send.sendMail("dchoudhary442000@gmail.com");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});

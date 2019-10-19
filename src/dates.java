@@ -270,7 +270,7 @@ public class dates extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				dashori d=new dashori();
+				dashboard d=new dashboard();
 				dispose();
 				d.setLocationRelativeTo(null);
 				d.setVisible(true);

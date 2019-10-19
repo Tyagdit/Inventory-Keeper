@@ -136,7 +136,7 @@ public class Userlogin extends JFrame {
               if((DataCon.checkUserLogin(username, password))){
             	  System.out.println("Login Successfull");
 					//Second Frame Called
-					dashori dash=new dashori();
+            	  dashboard dash=new dashboard();
 					dispose();
 					dash.setLocationRelativeTo(null);
 					dash.setVisible(true);
